@@ -1,17 +1,35 @@
-[gd_scene format=3 uid="uid://dkvib0d5udgbj"]
+[gd_scene load_steps=2 format=3 uid="uid://dkvib0d5udgbj"]
 
-[node name="Tab" type="Control"]
+[sub_resource type="GDScript" id="GDScript_hrepj"]
+script/source = "extends Control
+
+# tamanho para as dimensoes do tabuleiro em px
+@export_range(0.2, 1) var TAB_SCALE: float = 1.0
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	scale = Vector2(TAB_SCALE, TAB_SCALE)
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta):
+	pass
+"
+
+[node name="Tab" type="ReferenceRect"]
 custom_minimum_size = Vector2(800, 800)
-layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_right = 800.0
-offset_bottom = 800.0
+offset_left = -400.0
+offset_top = -400.0
+offset_right = 400.0
+offset_bottom = 400.0
 grow_horizontal = 2
 grow_vertical = 2
+border_width = 0.0
+script = SubResource("GDScript_hrepj")
 
 [node name="row_0" type="VBoxContainer" parent="."]
 layout_mode = 2

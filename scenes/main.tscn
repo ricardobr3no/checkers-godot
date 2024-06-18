@@ -8,5 +8,9 @@ script = ExtResource("1_8eyhm")
 
 [node name="Tab" parent="." instance=ExtResource("1_1ga3i")]
 process_mode = 4
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 800.0
+offset_bottom = 800.0
 
-[node name="pieces" type="Node" parent="."]
+[node name="pieces" type="Node2D" parent="Tab"]
