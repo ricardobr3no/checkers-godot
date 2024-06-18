@@ -51,9 +51,9 @@ func create_board():
 				board[row].append(0)
 		
 	# imprimir representenção do tabuleiro
-	print("\nTabuleiro criado:")
-	for row in range(ROWS):
-			print(board[row])
+	#print("\nTabuleiro criado:")
+	#for row in range(ROWS):
+		#print(board[row])
 	
 
 func instaciar_piece(piece: Object, row: int, col: int) -> Object:
