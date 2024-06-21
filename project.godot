@@ -23,9 +23,13 @@ window/size/window_width_override=400
 window/size/window_height_override=400
 window/stretch/mode="viewport"
 
-[editor_plugins]
+[file_customization]
 
-enabled=PackedStringArray("res://addons/godot_vim/plugin.cfg")
+folder_colors={
+"res://addons/": "gray",
+"res://assets/": "yellow",
+"res://scenes/": "teal"
+}
 
 [input]
 

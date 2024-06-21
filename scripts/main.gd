@@ -12,6 +12,9 @@ var blue_kings := 0
 @onready var red_piece = preload("res://scenes/red_piece.tscn")
 @onready var blue_piece = preload("res://scenes/blue_piece.tscn")
 
+# variavel para checar clicks, se for clique de selecionar ou se for clique pra mover piece selecionada
+var clicks := 0
+var selected_piece: Object
 
 func _ready() -> void:
 	draw_pieces()
@@ -21,13 +24,8 @@ func _ready() -> void:
 	
 	
 func _input(event):
-	if event.is_action_pressed("click"):
-		var row = get_row_col_from_mouse_pos()['row']
-		var col = get_row_col_from_mouse_pos()['col']
-		print('selecionou {}'.format([get_piece(row, col)], "{}"))
-		print("row: {}  col: {}".format([row, col], "{}"))
-		# mover_piece_with_mouse()
-
+	mover_piece_with_mouse(event)
+	
 
 func create_board():
 	# create board
@@ -92,8 +90,25 @@ func get_row_col_from_mouse_pos():
 	return {'row': row, 'col': col}
 
 
-func mover_piece_with_mouse():
-	pass
+func mover_piece_with_mouse(event):
+	if event.is_action_pressed("click"):
+		clicks += 1
+		print("Clicks: ", clicks)
+	
+		var row = get_row_col_from_mouse_pos()['row']
+		var col = get_row_col_from_mouse_pos()['col']
+		
+		if clicks == 1:
+			selected_piece = get_piece(row,col) 
+			print("selecionado: {}; row: {} col: {}".format([selected_piece, row, col], '{}'))
+		elif clicks == 2:
+			print("target = [row: {}, col: {}]".format([row, col], "{}"))
+			mover_pieces(selected_piece, row, col)
+		
+		
+		
+		if clicks > 1:
+			clicks = 0
 
 
 

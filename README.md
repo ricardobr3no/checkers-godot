@@ -1,2 +1,2 @@
 # checkers-godot
- jogo de damas feito na Godot engine
+	jogo de damas feito na Godot engine
