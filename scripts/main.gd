@@ -14,7 +14,7 @@ var blue_kings := 0
 
 # variavel para checar clicks, se for clique de selecionar ou se for clique pra mover piece selecionada
 var clicks := 0
-var selected_piece: Object
+var selected_piece  # pode receber Object ou Int
 
 func _ready() -> void:
 	draw_pieces()
@@ -23,7 +23,7 @@ func _ready() -> void:
 	mover_pieces(p, 4, 1)
 	
 	
-func _input(event):
+func _input(event: InputEvent) -> void:
 	mover_piece_with_mouse(event)
 	
 
@@ -83,7 +83,7 @@ func get_piece(row, col):
 	return board[row][col]
 
 
-func get_row_col_from_mouse_pos():
+func get_row_col_from_mouse_pos() -> Dictionary:
 	var pos = get_global_mouse_position()
 	var col = int(pos.x / SQUARE_SIZE)
 	var row = int(pos.y / SQUARE_SIZE)
@@ -102,7 +102,12 @@ func mover_piece_with_mouse(event):
 			selected_piece = get_piece(row,col) 
 			print("selecionado: {}; row: {} col: {}".format([selected_piece, row, col], '{}'))
 		elif clicks == 2:
+			
+			if not selected_piece is Object:
+				return
+				
 			print("target = [row: {}, col: {}]".format([row, col], "{}"))
+			
 			mover_pieces(selected_piece, row, col)
 		
 		
@@ -113,7 +118,11 @@ func mover_piece_with_mouse(event):
 
 
 func mover_pieces(piece, col, row):
-	# nao funcionando, nao sao sei pq
+	# ta aqui o motivo de row e col ta trocado
+	if not piece is Object:
+		return
+	
+	# troca as os elementos da matrix tabulerio de lugar
 	var aux = board[col][row]
 	board[col][row] = piece
 	board[piece.col][piece.row] = aux 
