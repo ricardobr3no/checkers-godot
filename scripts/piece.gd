@@ -1,6 +1,6 @@
 extends Area2D
 
-@onready var tabuleiro = get_node("/root/main/Tab")
+@onready var tabuleiro = get_node("/root/main/board")
 
 @onready var sprite := $MeshInstance2D
 @onready var crown := $crown
@@ -8,6 +8,8 @@ extends Area2D
 
 var row : int
 var col : int
+
+var color = 'red' if is_in_group('red_pieces') else 'blue'
 
 func _ready():
 	scale = tabuleiro.scale

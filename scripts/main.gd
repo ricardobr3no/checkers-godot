@@ -1,145 +1,78 @@
 extends Node2D
 
-const ROWS := 8
-const COLS := 8
+@onready var tabuleiro := $board
+@onready var pieces := $board/pieces
 
-@onready var SQUARE_SIZE = $Tab.get_custom_minimum_size().x / ROWS
+var selected_piece = []
+var valid_moves = []
+var turn_color = "blue"
 
-var board := []
-var red_kings := 0
-var blue_kings := 0
-
-@onready var red_piece = preload("res://scenes/red_piece.tscn")
-@onready var blue_piece = preload("res://scenes/blue_piece.tscn")
-
-# variavel para checar clicks, se for clique de selecionar ou se for clique pra mover piece selecionada
-var clicks := 0
-var selected_piece  # pode receber Object ou Int
 
 func _ready() -> void:
-	draw_pieces()
+	_reset()
 	
-	var p = get_piece(5, 0) # piece escolhida
-	mover_pieces(p, 4, 1)
+	#for node in pieces.get_children():
+		#if node.is_in_group('red_pieces'):
+			#node.visible = false
 	
 	
 func _input(event: InputEvent) -> void:
-	mover_piece_with_mouse(event)
-	
-
-func create_board():
-	# create board
-	for row in range(ROWS):
-		board.append([])
-		for col in range(COLS):
-			# se tiver nas primeiras rows, colocar as peças brancas
-			if row < 3:
-				if col % 2 == (row + 1) % 2:
-					board[row].append(1) # time 1
-				else:
-					board[row].append(0)
-			# se tiver nas primeiras rows, colocar as peças vermelhas
-			elif row > 4:
-				if col % 2 == (row + 1) % 2:
-					board[row].append(2) # time 2
-				else:
-					board[row].append(0)
-			# se tiver nas linhas do meio, colocar ZEROS simplesmente
-			else:
-				board[row].append(0)
-		
-	# imprimir representenção do tabuleiro
-	#print("\nTabuleiro criado:")
-	#for row in range(ROWS):
-		#print(board[row])
-	
-
-func instaciar_piece(piece: Object, row: int, col: int) -> Object:
-	var new_piece = piece.instantiate()
-	new_piece.row = row
-	new_piece.col = col
-	
-	$Tab/pieces.add_child(new_piece)
-	new_piece.position = Vector2(row*SQUARE_SIZE + SQUARE_SIZE / 2, col*SQUARE_SIZE + SQUARE_SIZE / 2)
-	return new_piece
-
-
-func draw_pieces():
-	create_board()
-	for row in range(ROWS):
-		for col in range(COLS):
-			# instanciar peça
-			if board[row][col] == 1:
-				board[row][col] = instaciar_piece(blue_piece, col, row)
-			
-			elif board[row][col] == 2:
-				board[row][col] = instaciar_piece(red_piece, col, row)
-	
-	
-
-
-
-func get_piece(row, col):
-	return board[row][col]
-
-
-func get_row_col_from_mouse_pos() -> Dictionary:
-	var pos = get_global_mouse_position()
-	var col = int(pos.x / SQUARE_SIZE)
-	var row = int(pos.y / SQUARE_SIZE)
-	return {'row': row, 'col': col}
-
-
-func mover_piece_with_mouse(event):
 	if event.is_action_pressed("click"):
-		clicks += 1
-		print("Clicks: ", clicks)
-	
-		var row = get_row_col_from_mouse_pos()['row']
-		var col = get_row_col_from_mouse_pos()['col']
+		var pos = tabuleiro.get_row_col_from_mouse_pos()
+		var row = pos['row']
+		var col = pos['col']
 		
-		if clicks == 1:
-			selected_piece = get_piece(row,col) 
-			print("selecionado: {}; row: {} col: {}".format([selected_piece, row, col], '{}'))
-		elif clicks == 2:
+		select(row, col)
+	
+	
+func _reset() -> void:
+	selected_piece = []
+	valid_moves = []
+	turn_color = "blue"
+	print("turno %s" % turn_color)
+	
+	print(selected_piece)
+	print(valid_moves)
+
+
+func _move(row, col):
+	var place_selected = tabuleiro.get_piece(row, col)
+	if selected_piece and not (place_selected is Object) and [row, col] in valid_moves:
+		tabuleiro.mover_pieces(selected_piece[0], row, col)
+		
+		print("moveu a peca de (row:{}, col:{}) para (row:{}, col:{})".format([row-1, col+1, selected_piece[0].row, selected_piece[0].col], "{}"))
+		selected_piece[0].row = col
+		selected_piece[0].col = row
+	else:
+		return false
+	
+	return true
+
+
+func select(row, col):
+	if selected_piece:
+		var result = _move(row, col)
+		if not result:
+			selected_piece = []
+			select(row, col)
+	else:
+		var piece = tabuleiro.get_piece(row, col)
+		if piece is Object and piece.color == turn_color:
+			selected_piece = [piece]
+			valid_moves = tabuleiro.get_valid_moves(piece)
 			
-			if not selected_piece is Object:
-				return
-				
-			print("target = [row: {}, col: {}]".format([row, col], "{}"))
-			
-			mover_pieces(selected_piece, row, col)
-		
-		
-		
-		if clicks > 1:
-			clicks = 0
+			print(selected_piece)
+			print(valid_moves)
+			return true
+	
+	
+	return false
 
 
-
-func mover_pieces(piece, col, row):
-	# ta aqui o motivo de row e col ta trocado
-	if not piece is Object:
-		return
-	
-	# troca as os elementos da matrix tabulerio de lugar
-	var aux = board[col][row]
-	board[col][row] = piece
-	board[piece.col][piece.row] = aux 
-	
-	piece.row = col
-	piece.col = row
-	
-	# mover piece atualizando o position 
-	piece.position =  Vector2(row*SQUARE_SIZE + SQUARE_SIZE / 2, col*SQUARE_SIZE + SQUARE_SIZE / 2)
-	
-	# condição para promoção da piece
-	if row == ROWS or row == 0:
-		piece.is_king = true
-		
-		if piece.is_in_group("red_pieces"):
-			red_kings += 1
-		else:
-			blue_kings += 1
-
-	
+func change_turn():
+	if turn_color == 'red':
+		turn_color = 'blue'
+		print('turno blue')
+	else:
+		turn_color = 'red'
+		print('turno red')

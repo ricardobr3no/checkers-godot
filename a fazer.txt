@@ -1,2 +1,0 @@
-# criar sistema de turno
-# verificar se é posição valida ao mover piece
