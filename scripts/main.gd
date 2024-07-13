@@ -11,9 +11,6 @@ var turn_color = "blue"
 func _ready() -> void:
 	_reset()
 	
-	#for node in pieces.get_children():
-		#if node.is_in_group('red_pieces'):
-			#node.visible = false
 	
 	
 func _input(event: InputEvent) -> void:
@@ -37,12 +34,13 @@ func _reset() -> void:
 
 func _move(row, col):
 	var place_selected = tabuleiro.get_piece(row, col)
+	
 	if selected_piece and not (place_selected is Object) and [row, col] in valid_moves:
 		tabuleiro.mover_pieces(selected_piece[0], row, col)
-		
-		print("moveu a peca de (row:{}, col:{}) para (row:{}, col:{})".format([row-1, col+1, selected_piece[0].row, selected_piece[0].col], "{}"))
 		selected_piece[0].row = col
 		selected_piece[0].col = row
+		
+		#print("moveu a peca de (row:{}, col:{}) para (row:{}, col:{})".format([row-1, col+1, selected_piece[0].row, selected_piece[0].col], "{}"))
 	else:
 		return false
 	
@@ -64,7 +62,6 @@ func select(row, col):
 			print(selected_piece)
 			print(valid_moves)
 			return true
-	
 	
 	return false
 
