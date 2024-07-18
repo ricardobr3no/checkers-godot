@@ -7,3 +7,4 @@
 script = ExtResource("1_8eyhm")
 
 [node name="board" parent="." instance=ExtResource("1_hpled")]
+metadata/_edit_lock_ = true

@@ -9,6 +9,7 @@ const COLS := 8
 @onready var SQUARE_SIZE = int(get_custom_minimum_size().x / ROWS)
 
 var board := []
+var removed_piece = null
 var red_kings := 0
 var blue_kings := 0
 
@@ -125,6 +126,8 @@ func mover_pieces(piece, col, row):
 	# mover piece atualizando o position 
 	piece.position =  Vector2(row*SQUARE_SIZE + SQUARE_SIZE / 2, col*SQUARE_SIZE + SQUARE_SIZE / 2)
 
+func remove_pieces(piece):
+	board[piece.col][piece.row] = 0
 
 func make_king(piece):
 	# condição para promoção
