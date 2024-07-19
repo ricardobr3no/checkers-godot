@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2ncfnspohyyd"]
+
+[ext_resource type="Script" path="res://scripts/basePiece.gd" id="1_7a77r"]
+[ext_resource type="Texture2D" uid="uid://c6d7n40kwf6n0" path="res://icon.svg" id="2_i04yb"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_65k2p"]
+radius = 40.0
+height = 80.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_de0x8"]
+radius = 45.0111
+
+[node name="basePiece" type="Area2D" groups=["red_pieces"]]
+position = Vector2(247, 49)
+script = ExtResource("1_7a77r")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+mesh = SubResource("SphereMesh_65k2p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_de0x8")
+
+[node name="crown" type="Sprite2D" parent="."]
+process_mode = 3
+texture_filter = 1
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_i04yb")

@@ -5,7 +5,7 @@ extends Node2D
 
 var selected_piece = []
 var valid_moves = []
-var turn_color = "blue"
+var turn_color = Color.BLUE
 
 
 func _ready() -> void:
@@ -24,10 +24,9 @@ func _input(event: InputEvent) -> void:
 func _reset() -> void:
 	selected_piece = []
 	valid_moves = []
-	turn_color = "blue"
+	turn_color = Color.BLUE
 	_set_piece_colors()
 	
-	print("turno %s" % turn_color)
 	print(selected_piece)
 	print(valid_moves)
 
@@ -35,10 +34,10 @@ func _reset() -> void:
 func _set_piece_colors():
 	for piece in pieces.get_children():
 		if piece.col < 3:
-			piece.color = 'blue'
+			piece.set_colorPiece(Color.BLUE)
 		
 		elif piece.col > 4:
-			piece.color = 'red'
+			piece.set_colorPiece(Color.RED)
 
 
 func _move(row, col):
@@ -48,8 +47,6 @@ func _move(row, col):
 		board.mover_pieces(selected_piece[0], row, col)
 		selected_piece[0].row = col
 		selected_piece[0].col = row
-		
-		#print("moveu a peca de (row:{}, col:{}) para (row:{}, col:{})".format([row-1, col+1, selected_piece[0].row, selected_piece[0].col], "{}"))
 	else:
 		return false
 	
@@ -70,17 +67,16 @@ func select(row, col):
 			selected_piece = [piece]
 			valid_moves = board.get_valid_moves(piece)
 			
-			print(selected_piece, selected_piece[0].color)
-			print(valid_moves)
+			print("valid moves: ",valid_moves)
 			return true
 	
 	return false
 
 
 func change_turn():
-	if turn_color == 'red':
-		turn_color = 'blue'
+	if turn_color == Color.RED:
+		turn_color = Color.BLUE
 		print('turno blue')
 	else:
-		turn_color = 'red'
+		turn_color = Color.RED
 		print('turno red')

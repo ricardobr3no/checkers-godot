@@ -13,8 +13,7 @@ var removed_piece = null
 var red_kings := 0
 var blue_kings := 0
 
-@onready var red_piece = preload("res://scenes/red_piece.tscn")
-@onready var blue_piece = preload("res://scenes/blue_piece.tscn")
+@onready var basePiece = preload("res://scenes/basePiece.tscn")
 
 var selected_piece  # pode receber Object ou Int
 var kill_move = false
@@ -67,10 +66,10 @@ func draw_pieces():
 		for col in range(COLS):
 			# instanciar peça
 			if board[row][col] == 1:
-				board[row][col] = instaciar_piece(blue_piece, col, row)
+				board[row][col] = instaciar_piece(basePiece, col, row)
 			
 			elif board[row][col] == 2:
-				board[row][col] = instaciar_piece(red_piece, col, row)
+				board[row][col] = instaciar_piece(basePiece, col, row)
 	
 	
 func get_valid_moves(piece) -> Array:
@@ -80,7 +79,7 @@ func get_valid_moves(piece) -> Array:
 	var left = piece.row - 1
 	var right = piece.row + 1
 	var row = piece.col
-	var step = +1 if piece.color == 'blue' else -1
+	var step = +1 if piece.color == Color.BLUE else -1
 	
 	# algoritmo para pulo simples
 	if left >= 0 and not (board[row + step][left] is Object):
