@@ -1,6 +1,6 @@
 extends Area2D
 
-const SCALE_SIZE := 1.05
+const SCALE_SIZE := 1.1
 
 #@onready var board := get_node("/root/main/board")
 @onready var sprite := $MeshInstance2D
@@ -18,7 +18,7 @@ func _ready() -> void:
 	crown.visible = false
 	set_colorPiece(Color.GRAY)
 	#set_colorPiece(Color.BLUE)
-
+	
 
 func set_colorPiece(colorPiece: Color) -> void:
 	sprite.self_modulate = colorPiece

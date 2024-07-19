@@ -14,6 +14,7 @@ var red_kings := 0
 var blue_kings := 0
 
 @onready var basePiece = preload("res://scenes/basePiece.tscn")
+@onready var nodePieces := $pieces
 
 var selected_piece  # pode receber Object ou Int
 var kill_move = false
@@ -72,14 +73,15 @@ func draw_pieces():
 				board[row][col] = instaciar_piece(basePiece, col, row)
 	
 	
-func get_valid_moves(piece) -> Array:
-	var simple_moves := []
+func get_valid_moves(piece):
 	var kill_moves := []
+	var simple_moves := []
 	
 	var left = piece.row - 1
 	var right = piece.row + 1
 	var row = piece.col
 	var step = +1 if piece.color == Color.BLUE else -1
+	
 	
 	# algoritmo para pulo simples
 	## left
@@ -93,14 +95,22 @@ func get_valid_moves(piece) -> Array:
 	## left
 	if row + 2 * step in range(8):
 		if left - 1 <= 7 and board[row + step][left] is Object and not (board[row + 2 * step][left - 1] is Object):
-			kill_move = true
-			kill_moves.append([row + 2 * step, left - 1])
+			var obstaculo_piece = board[row + step][left]
+			if obstaculo_piece.color != Global.TurnColor:
+				kill_move = true
+				kill_moves.append([row + 2 * step, left - 1])
 	## right
 		if right + 1 <= 7 and board[row + step][right] is Object and not (board[row + 2 * step][right + 1] is Object):
-			kill_move = true
-			kill_moves.append([row + 2 * step, right + 1])
+			var obstaculo_piece = board[row + step][right]
+			if obstaculo_piece.color != Global.TurnColor:
+				kill_move = true
+				kill_moves.append([row + 2 * step, right + 1])
 	
-	return kill_moves if kill_moves else simple_moves
+	
+	# export
+	var valid_moves := {"simple" : simple_moves, "kill" : kill_moves}
+	
+	return valid_moves
 
 
 func get_piece(row, col):

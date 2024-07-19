@@ -9,6 +9,7 @@ var valid_moves = []
 
 func _ready() -> void:
 	_reset()
+	print(get_all_kill_moves())
 	
 	
 func _input(event: InputEvent) -> void:
@@ -39,29 +40,59 @@ func _set_piece_colors():
 			piece.set_colorPiece(Color.RED)
 
 
+func get_all_kill_moves() -> Array:
+	var all_kill_moves := []
+	
+	for piece in pieces.get_children():
+		if piece.color == Global.TurnColor:
+			# logica
+			var moves = board.get_valid_moves(piece)
+			if moves.kill:
+				all_kill_moves.append(moves.kill[0])
+	
+	if not all_kill_moves:
+		return []
+	
+	return all_kill_moves
+	
+	
+	
+
+
 func _move(row, col):
 	var place_selected = board.get_piece(row, col)
 	
-	if selected_piece and not (place_selected is Object) and [row, col] in valid_moves:
-		board.mover_pieces(selected_piece[0], row, col)
-		selected_piece[0].row = col
-		selected_piece[0].col = row
-		# moveu e atualizou
-	else:
-		return false
+	if get_all_kill_moves():
+		# se tiver alguma piece com pulo disponivel		
+		if selected_piece and not (place_selected is Object) and [row, col] in valid_moves and [row, col] in get_all_kill_moves():
+			board.mover_pieces(selected_piece[0], row, col)
+			selected_piece[0].row = col
+			selected_piece[0].col = row
+			# moveu e atualizou
+		else:
+			return false
+		
+		return true
 	
-	return true
+	else:
+		if selected_piece and not (place_selected is Object) and [row, col] in valid_moves:
+			board.mover_pieces(selected_piece[0], row, col)
+			selected_piece[0].row = col
+			selected_piece[0].col = row
+			# moveu e atualizou
+		else:
+			return false
+		
+		return true
 
 
 func select(row, col):
 	if selected_piece:
 		var result = _move(row, col)
-		
 		if not result:
 			selected_piece = []
 			select(row, col)
 		else:
-			
 			change_turn()
 			
 		
@@ -70,10 +101,11 @@ func select(row, col):
 		var piece = board.get_piece(row, col)
 		if piece is Object and piece.color == Global.TurnColor:
 			selected_piece = [piece]
-			valid_moves = board.get_valid_moves(piece)
+			
+			var moves = board.get_valid_moves(piece) # retorna dictonary
+			valid_moves = moves.kill if moves.kill else moves.simple
 			
 			selected_piece[0].is_selected = true
-			print("valid moves: ",valid_moves)
 			return true
 	
 	return false
