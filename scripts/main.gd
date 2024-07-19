@@ -46,6 +46,7 @@ func _move(row, col):
 		board.mover_pieces(selected_piece[0], row, col)
 		selected_piece[0].row = col
 		selected_piece[0].col = row
+		# moveu e atualizou
 	else:
 		return false
 	

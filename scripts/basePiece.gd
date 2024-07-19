@@ -17,7 +17,7 @@ var is_king := false
 func _ready() -> void:
 	crown.visible = false
 	set_colorPiece(Color.GRAY)
-	set_colorPiece(Color.BLUE)
+	#set_colorPiece(Color.BLUE)
 
 
 func set_colorPiece(colorPiece: Color) -> void:

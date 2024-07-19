@@ -82,16 +82,21 @@ func get_valid_moves(piece) -> Array:
 	var step = +1 if piece.color == Color.BLUE else -1
 	
 	# algoritmo para pulo simples
+	## left
 	if left >= 0 and not (board[row + step][left] is Object):
-			simple_moves.append([row + step, left])
+		simple_moves.append([row + step, left])
+	## right
 	if right <= 7 and not (board[row + step][right] is Object):
-			simple_moves.append([row + step, right])
+		simple_moves.append([row + step, right])
 	
 	# algoritmo para kill jumper
-	if left - 1 >= 0 and board[row + step][left] is Object and not (board[row + 2 * step][left - 1] is Object):
+	## left
+	if row + 2 * step in range(8):
+		if left - 1 <= 7 and board[row + step][left] is Object and not (board[row + 2 * step][left - 1] is Object):
 			kill_move = true
 			kill_moves.append([row + 2 * step, left - 1])
-	if right + 1 <= 7 and board[row + step][right] is Object and not (board[row + 2 * step][right + 1] is Object):
+	## right
+		if right + 1 <= 7 and board[row + step][right] is Object and not (board[row + 2 * step][right + 1] is Object):
 			kill_move = true
 			kill_moves.append([row + 2 * step, right + 1])
 	
