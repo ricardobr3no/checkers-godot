@@ -5,7 +5,6 @@ extends Node2D
 
 var selected_piece = []
 var valid_moves = []
-var turn_color = Color.BLUE
 
 
 func _ready() -> void:
@@ -24,7 +23,7 @@ func _input(event: InputEvent) -> void:
 func _reset() -> void:
 	selected_piece = []
 	valid_moves = []
-	turn_color = Color.BLUE
+	Global.TurnColor = Color.BLUE
 	_set_piece_colors()
 	
 	print(selected_piece)
@@ -56,17 +55,23 @@ func _move(row, col):
 func select(row, col):
 	if selected_piece:
 		var result = _move(row, col)
+		
 		if not result:
 			selected_piece = []
 			select(row, col)
 		else:
+			
 			change_turn()
+			
+		
+		
 	else:
 		var piece = board.get_piece(row, col)
-		if piece is Object and piece.color == turn_color:
+		if piece is Object and piece.color == Global.TurnColor:
 			selected_piece = [piece]
 			valid_moves = board.get_valid_moves(piece)
 			
+			selected_piece[0].is_selected = true
 			print("valid moves: ",valid_moves)
 			return true
 	
@@ -74,9 +79,9 @@ func select(row, col):
 
 
 func change_turn():
-	if turn_color == Color.RED:
-		turn_color = Color.BLUE
+	if Global.TurnColor == Color.RED:
+		Global.TurnColor = Color.BLUE
 		print('turno blue')
 	else:
-		turn_color = Color.RED
+		Global.TurnColor = Color.RED
 		print('turno red')

@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scripts/board.gd" id="1_8stay"]
 
 [node name="Tab" type="ReferenceRect"]
+process_mode = 3
 custom_minimum_size = Vector2(800, 800)
 anchors_preset = 8
 anchor_left = 0.5
@@ -13,6 +14,8 @@ offset_right = 800.0
 offset_bottom = 800.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 2
+mouse_filter = 2
 border_width = 0.0
 script = ExtResource("1_8stay")
 metadata/_edit_group_ = true
@@ -21,8 +24,8 @@ metadata/_edit_group_ = true
 layout_mode = 2
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
 
 [node name="col_0" type="HBoxContainer" parent="row_0"]
 layout_mode = 2
@@ -30,77 +33,94 @@ layout_mode = 2
 [node name="ColorRect" type="ColorRect" parent="row_0/col_0"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="ColorRect2" type="ColorRect" parent="row_0/col_0"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 color = Color(0.208843, 0.604545, 0.34554, 1)
 
 [node name="ColorRect3" type="ColorRect" parent="row_0/col_0"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="ColorRect4" type="ColorRect" parent="row_0/col_0"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 color = Color(0.208843, 0.604545, 0.34554, 1)
 
 [node name="ColorRect5" type="ColorRect" parent="row_0/col_0"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="ColorRect6" type="ColorRect" parent="row_0/col_0"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 color = Color(0.208843, 0.604545, 0.34554, 1)
 
 [node name="ColorRect7" type="ColorRect" parent="row_0/col_0"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="ColorRect8" type="ColorRect" parent="row_0/col_0"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 color = Color(0.208843, 0.604545, 0.34554, 1)
 
 [node name="col_1" type="HBoxContainer" parent="row_0"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="ColorRect2" type="ColorRect" parent="row_0/col_1"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 color = Color(0.208843, 0.604545, 0.34554, 1)
 
 [node name="ColorRect" type="ColorRect" parent="row_0/col_1"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="ColorRect4" type="ColorRect" parent="row_0/col_1"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 color = Color(0.208843, 0.604545, 0.34554, 1)
 
 [node name="ColorRect5" type="ColorRect" parent="row_0/col_1"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="ColorRect6" type="ColorRect" parent="row_0/col_1"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 color = Color(0.208843, 0.604545, 0.34554, 1)
 
 [node name="ColorRect7" type="ColorRect" parent="row_0/col_1"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="ColorRect8" type="ColorRect" parent="row_0/col_1"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 color = Color(0.208843, 0.604545, 0.34554, 1)
 
 [node name="ColorRect3" type="ColorRect" parent="row_0/col_1"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="col_2" type="HBoxContainer" parent="row_0"]
 layout_mode = 2
@@ -108,37 +128,45 @@ layout_mode = 2
 [node name="ColorRect" type="ColorRect" parent="row_0/col_2"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="ColorRect2" type="ColorRect" parent="row_0/col_2"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 color = Color(0.208843, 0.604545, 0.34554, 1)
 
 [node name="ColorRect3" type="ColorRect" parent="row_0/col_2"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="ColorRect4" type="ColorRect" parent="row_0/col_2"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 color = Color(0.208843, 0.604545, 0.34554, 1)
 
 [node name="ColorRect5" type="ColorRect" parent="row_0/col_2"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="ColorRect6" type="ColorRect" parent="row_0/col_2"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 color = Color(0.208843, 0.604545, 0.34554, 1)
 
 [node name="ColorRect7" type="ColorRect" parent="row_0/col_2"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="ColorRect8" type="ColorRect" parent="row_0/col_2"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 color = Color(0.208843, 0.604545, 0.34554, 1)
 
 [node name="col_3" type="HBoxContainer" parent="row_0"]
@@ -147,38 +175,46 @@ layout_mode = 2
 [node name="ColorRect2" type="ColorRect" parent="row_0/col_3"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 color = Color(0.208843, 0.604545, 0.34554, 1)
 
 [node name="ColorRect" type="ColorRect" parent="row_0/col_3"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="ColorRect4" type="ColorRect" parent="row_0/col_3"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 color = Color(0.208843, 0.604545, 0.34554, 1)
 
 [node name="ColorRect5" type="ColorRect" parent="row_0/col_3"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="ColorRect6" type="ColorRect" parent="row_0/col_3"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 color = Color(0.208843, 0.604545, 0.34554, 1)
 
 [node name="ColorRect7" type="ColorRect" parent="row_0/col_3"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="ColorRect8" type="ColorRect" parent="row_0/col_3"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 color = Color(0.208843, 0.604545, 0.34554, 1)
 
 [node name="ColorRect3" type="ColorRect" parent="row_0/col_3"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="col_4" type="HBoxContainer" parent="row_0"]
 layout_mode = 2
@@ -186,37 +222,45 @@ layout_mode = 2
 [node name="ColorRect" type="ColorRect" parent="row_0/col_4"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="ColorRect2" type="ColorRect" parent="row_0/col_4"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 color = Color(0.208843, 0.604545, 0.34554, 1)
 
 [node name="ColorRect3" type="ColorRect" parent="row_0/col_4"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="ColorRect4" type="ColorRect" parent="row_0/col_4"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 color = Color(0.208843, 0.604545, 0.34554, 1)
 
 [node name="ColorRect5" type="ColorRect" parent="row_0/col_4"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="ColorRect6" type="ColorRect" parent="row_0/col_4"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 color = Color(0.208843, 0.604545, 0.34554, 1)
 
 [node name="ColorRect7" type="ColorRect" parent="row_0/col_4"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="ColorRect8" type="ColorRect" parent="row_0/col_4"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 color = Color(0.208843, 0.604545, 0.34554, 1)
 
 [node name="col_5" type="HBoxContainer" parent="row_0"]
@@ -225,38 +269,46 @@ layout_mode = 2
 [node name="ColorRect2" type="ColorRect" parent="row_0/col_5"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 color = Color(0.208843, 0.604545, 0.34554, 1)
 
 [node name="ColorRect" type="ColorRect" parent="row_0/col_5"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="ColorRect4" type="ColorRect" parent="row_0/col_5"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 color = Color(0.208843, 0.604545, 0.34554, 1)
 
 [node name="ColorRect5" type="ColorRect" parent="row_0/col_5"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="ColorRect6" type="ColorRect" parent="row_0/col_5"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 color = Color(0.208843, 0.604545, 0.34554, 1)
 
 [node name="ColorRect7" type="ColorRect" parent="row_0/col_5"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="ColorRect8" type="ColorRect" parent="row_0/col_5"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 color = Color(0.208843, 0.604545, 0.34554, 1)
 
 [node name="ColorRect3" type="ColorRect" parent="row_0/col_5"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="col_6" type="HBoxContainer" parent="row_0"]
 layout_mode = 2
@@ -264,37 +316,45 @@ layout_mode = 2
 [node name="ColorRect" type="ColorRect" parent="row_0/col_6"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="ColorRect2" type="ColorRect" parent="row_0/col_6"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 color = Color(0.208843, 0.604545, 0.34554, 1)
 
 [node name="ColorRect3" type="ColorRect" parent="row_0/col_6"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="ColorRect4" type="ColorRect" parent="row_0/col_6"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 color = Color(0.208843, 0.604545, 0.34554, 1)
 
 [node name="ColorRect5" type="ColorRect" parent="row_0/col_6"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="ColorRect6" type="ColorRect" parent="row_0/col_6"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 color = Color(0.208843, 0.604545, 0.34554, 1)
 
 [node name="ColorRect7" type="ColorRect" parent="row_0/col_6"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="ColorRect8" type="ColorRect" parent="row_0/col_6"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 color = Color(0.208843, 0.604545, 0.34554, 1)
 
 [node name="col_7" type="HBoxContainer" parent="row_0"]
@@ -303,37 +363,45 @@ layout_mode = 2
 [node name="ColorRect2" type="ColorRect" parent="row_0/col_7"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 color = Color(0.208843, 0.604545, 0.34554, 1)
 
 [node name="ColorRect" type="ColorRect" parent="row_0/col_7"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="ColorRect4" type="ColorRect" parent="row_0/col_7"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 color = Color(0.208843, 0.604545, 0.34554, 1)
 
 [node name="ColorRect5" type="ColorRect" parent="row_0/col_7"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="ColorRect6" type="ColorRect" parent="row_0/col_7"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 color = Color(0.208843, 0.604545, 0.34554, 1)
 
 [node name="ColorRect7" type="ColorRect" parent="row_0/col_7"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="ColorRect8" type="ColorRect" parent="row_0/col_7"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 color = Color(0.208843, 0.604545, 0.34554, 1)
 
 [node name="ColorRect3" type="ColorRect" parent="row_0/col_7"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="pieces" type="Node2D" parent="."]
