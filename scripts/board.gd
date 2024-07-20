@@ -26,7 +26,7 @@ func _ready() -> void:
 	draw_pieces()
 	
 	var piece = get_piece(5, 0)
-	mover_pieces(piece, 3, 2)
+	#mover_pieces(piece, 3, 2)
 
 
 func create_board():

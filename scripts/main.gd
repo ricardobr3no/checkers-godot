@@ -50,7 +50,7 @@ func get_all_kill_moves() -> Array:
 			# logica
 			var moves = board.get_valid_moves(piece)
 			if moves.kill:
-				all_kill_moves.append(moves.kill[0])
+				all_kill_moves.append_array(moves.kill)
 	
 	if not all_kill_moves:
 		return []
@@ -104,6 +104,7 @@ func select(row, col):
 			
 			var moves = board.get_valid_moves(piece) # retorna dictonary
 			valid_moves = moves.kill if moves.kill else moves.simple
+			print(valid_moves)
 			_draw_guides(piece)
 			return true
 	
@@ -112,22 +113,37 @@ func select(row, col):
 
 func _draw_guides(piece):
 	
-	for node in $board/points.get_children():
-		node.queue_free()
+	remove_guides()
 	
-	for pos in valid_moves:
-		if pos in get_all_kill_moves():
-			var circulo_y = pos[0]
-			var circulo_x = pos[1]
-			
+	if get_all_kill_moves():
+		for move in valid_moves:
+			if move in get_all_kill_moves():
+				var circulo_y = move[0]
+				var circulo_x = move[1]
+				var p = point.instantiate()
+				$board/points.add_child(p)
+				p.add_to_group("point")
+				p.position = Vector2(circulo_x * board.SQUARE_SIZE + board.SQUARE_SIZE / 2, circulo_y * board.SQUARE_SIZE + board.SQUARE_SIZE / 2)
+	
+	else:
+		for move in valid_moves:
+			var circulo_y = move[0]
+			var circulo_x = move[1]
 			var p = point.instantiate()
 			$board/points.add_child(p)
 			p.add_to_group("point")
-			
 			p.position = Vector2(circulo_x * board.SQUARE_SIZE + board.SQUARE_SIZE / 2, circulo_y * board.SQUARE_SIZE + board.SQUARE_SIZE / 2)
+	
+
+
+func remove_guides():
+	for node in $board/points.get_children():
+		node.queue_free()
 
 
 func change_turn():
+	remove_guides()
+	
 	if Global.TurnColor == Color.RED:
 		Global.TurnColor = Color.BLUE
 		print('turno blue')
