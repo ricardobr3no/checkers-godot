@@ -10,7 +10,6 @@ var row : int
 var col : int
 
 var color : Color
-var is_selected := false
 var is_king := false
 
 
@@ -37,7 +36,7 @@ func _mouse_enter() -> void:
 	if color == Global.TurnColor:
 		sprite.scale *= SCALE_SIZE
 	else:
-		scale = Vector2(SCALE_SIZE, SCALE_SIZE)
+		reset_size()
 		
 func _mouse_exit() -> void:
 	if color == Global.TurnColor:

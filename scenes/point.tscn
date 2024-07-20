@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckfyy7dnhye8q"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_pycmv"]
+radius = 40.0
+height = 80.0
+
+[sub_resource type="GDScript" id="GDScript_i8oiq"]
+script/source = "extends MeshInstance2D
+
+func _ready() -> void:
+	self_modulate = Color.BLACK
+"
+
+[node name="point" type="MeshInstance2D"]
+position = Vector2(382, 278)
+scale = Vector2(0.5, 0.5)
+mesh = SubResource("SphereMesh_pycmv")
+script = SubResource("GDScript_i8oiq")

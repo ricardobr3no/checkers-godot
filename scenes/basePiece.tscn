@@ -11,6 +11,7 @@ height = 80.0
 radius = 45.0111
 
 [node name="basePiece" type="Area2D" groups=["red_pieces"]]
+z_index = 2
 position = Vector2(247, 49)
 script = ExtResource("1_7a77r")
 

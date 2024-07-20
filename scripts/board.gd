@@ -6,7 +6,7 @@ extends Control
 const ROWS := 8
 const COLS := 8
 
-@onready var SQUARE_SIZE = int(get_custom_minimum_size().x / ROWS)
+@onready var SQUARE_SIZE = get_custom_minimum_size().x / ROWS
 
 var board := []
 var removed_piece = null
@@ -94,7 +94,7 @@ func get_valid_moves(piece):
 	# algoritmo para kill jumper
 	## left
 	if row + 2 * step in range(8):
-		if left - 1 <= 7 and board[row + step][left] is Object and not (board[row + 2 * step][left - 1] is Object):
+		if left - 1 >= 0 and board[row + step][left] is Object and not (board[row + 2 * step][left - 1] is Object):
 			var obstaculo_piece = board[row + step][left]
 			if obstaculo_piece.color != Global.TurnColor:
 				kill_move = true

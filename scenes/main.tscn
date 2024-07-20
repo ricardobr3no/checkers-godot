@@ -7,3 +7,5 @@
 script = ExtResource("1_8eyhm")
 
 [node name="board" parent="." instance=ExtResource("1_hpled")]
+
+[node name="points" type="Node" parent="board"]

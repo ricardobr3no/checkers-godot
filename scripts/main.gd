@@ -3,6 +3,8 @@ extends Node2D
 @onready var board := $board
 @onready var pieces := $board/pieces
 
+@onready var point := preload("res://scenes/point.tscn")
+
 var selected_piece = []
 var valid_moves = []
 
@@ -54,9 +56,6 @@ func get_all_kill_moves() -> Array:
 		return []
 	
 	return all_kill_moves
-	
-	
-	
 
 
 func _move(row, col):
@@ -64,7 +63,7 @@ func _move(row, col):
 	
 	if get_all_kill_moves():
 		# se tiver alguma piece com pulo disponivel		
-		if selected_piece and not (place_selected is Object) and [row, col] in valid_moves and [row, col] in get_all_kill_moves():
+		if selected_piece and not (place_selected is Object) and [row, col] in get_all_kill_moves():
 			board.mover_pieces(selected_piece[0], row, col)
 			selected_piece[0].row = col
 			selected_piece[0].col = row
@@ -88,6 +87,7 @@ func _move(row, col):
 
 func select(row, col):
 	if selected_piece:
+		print(get_all_kill_moves())
 		var result = _move(row, col)
 		if not result:
 			selected_piece = []
@@ -104,12 +104,26 @@ func select(row, col):
 			
 			var moves = board.get_valid_moves(piece) # retorna dictonary
 			valid_moves = moves.kill if moves.kill else moves.simple
-			
-			selected_piece[0].is_selected = true
+			_draw_guides(piece)
 			return true
 	
 	return false
 
+
+func _draw_guides(piece):
+	
+	for node in $board/points.get_children():
+		node.queue_free()
+	
+	for pos in valid_moves:
+		var circulo_y = pos[0]
+		var circulo_x = pos[1]
+		
+		var p = point.instantiate()
+		$board/points.add_child(p)
+		p.add_to_group("point")
+		
+		p.position = Vector2(circulo_x * board.SQUARE_SIZE + board.SQUARE_SIZE / 2, circulo_y * board.SQUARE_SIZE + board.SQUARE_SIZE / 2)
 
 func change_turn():
 	if Global.TurnColor == Color.RED:
