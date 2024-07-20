@@ -116,14 +116,16 @@ func _draw_guides(piece):
 		node.queue_free()
 	
 	for pos in valid_moves:
-		var circulo_y = pos[0]
-		var circulo_x = pos[1]
-		
-		var p = point.instantiate()
-		$board/points.add_child(p)
-		p.add_to_group("point")
-		
-		p.position = Vector2(circulo_x * board.SQUARE_SIZE + board.SQUARE_SIZE / 2, circulo_y * board.SQUARE_SIZE + board.SQUARE_SIZE / 2)
+		if pos in get_all_kill_moves():
+			var circulo_y = pos[0]
+			var circulo_x = pos[1]
+			
+			var p = point.instantiate()
+			$board/points.add_child(p)
+			p.add_to_group("point")
+			
+			p.position = Vector2(circulo_x * board.SQUARE_SIZE + board.SQUARE_SIZE / 2, circulo_y * board.SQUARE_SIZE + board.SQUARE_SIZE / 2)
+
 
 func change_turn():
 	if Global.TurnColor == Color.RED:
