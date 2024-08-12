@@ -127,6 +127,7 @@ func get_row_col_from_mouse_pos() -> Dictionary:
 func mover_pieces(piece, col, row):
 		# ta aqui o motivo de row e col ta trocado
 	if not (piece is Object):
+		get_parent().remove_guides()
 		return
 	# troca as os elementos da matrix tabulerio de lugar
 	var aux = board[col][row]
@@ -140,8 +141,39 @@ func mover_pieces(piece, col, row):
 	# mover piece atualizando o position 
 	piece.position =  Vector2(row*SQUARE_SIZE + SQUARE_SIZE / 2, col*SQUARE_SIZE + SQUARE_SIZE / 2)
 
-func remove_pieces(piece):
-	board[piece.col][piece.row] = 0
+func remove_pieces(piece, row, col):
+	var temp
+	print("curret position : ({}, {})".format([piece.col, piece.row], "{}"))
+	print("target position : ({}, {})".format([row, col], "{}"))
+	# row -> piece.col
+	# col -> piece.row
+	if col > piece.row:
+		# vai pra direita
+		if row > piece.col:
+			#vai pra baixo
+			temp = board[row-1][col-1]
+			board[row-1][col-1] = 0
+		elif row < piece.col:
+			# vai pra cima
+			temp = board[row+1][col-1]
+			board[row+1][col-1] = 0
+	
+	elif col < piece.row:
+		# vai pra esquerda
+		if row > piece.col:
+			#vai pra baixo
+			temp = board[row-1][col+1]
+			board[row-1][col+1] = 0
+		elif row < piece.col:
+			# vai pra cima
+			temp = board[row+1][col+1]
+			board[row+1][col+1] = 0
+		
+	temp.input_pickable = false
+	temp.visible= false
+	temp.queue_free()
+	print("removido")
+
 
 func make_king(piece):
 	# condição para promoção

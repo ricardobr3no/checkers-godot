@@ -65,9 +65,12 @@ func _move(row, col):
 		# se tiver alguma piece com pulo disponivel		
 		if selected_piece and not (place_selected is Object) and [row, col] in get_all_kill_moves():
 			board.mover_pieces(selected_piece[0], row, col)
+			board.remove_pieces(selected_piece[0], row, col)
 			selected_piece[0].row = col
 			selected_piece[0].col = row
+			
 			# moveu e atualizou
+			
 		else:
 			return false
 		
@@ -105,13 +108,13 @@ func select(row, col):
 			var moves = board.get_valid_moves(piece) # retorna dictonary
 			valid_moves = moves.kill if moves.kill else moves.simple
 			print(valid_moves)
-			_draw_guides(piece)
+			_draw_guides()
 			return true
 	
 	return false
 
 
-func _draw_guides(piece):
+func _draw_guides():
 	
 	remove_guides()
 	
