@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://psylejgyjc6r"]
+[gd_scene load_steps=4 format=3 uid="uid://psylejgyjc6r"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_8eyhm"]
 [ext_resource type="PackedScene" uid="uid://b1xg1sminc3sm" path="res://scenes/board.tscn" id="1_hpled"]
+[ext_resource type="AudioStream" uid="uid://d02c6r5l0t5bk" path="res://assets/sounds/audio_piece.mp3" id="3_0l2im"]
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_8eyhm")
@@ -9,3 +10,6 @@ script = ExtResource("1_8eyhm")
 [node name="board" parent="." instance=ExtResource("1_hpled")]
 
 [node name="points" type="Node" parent="board"]
+
+[node name="audio_piece" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_0l2im")

@@ -27,10 +27,6 @@ window/size/window_width_override=400
 window/size/window_height_override=400
 window/stretch/mode="viewport"
 
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/script-ide/plugin.cfg")
-
 [file_customization]
 
 folder_colors={

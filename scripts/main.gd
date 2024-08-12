@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var board := $board
 @onready var pieces := $board/pieces
+@onready var audio_piece := $audio_piece
 
 @onready var point := preload("res://scenes/point.tscn")
 
@@ -68,15 +69,13 @@ func _move(row, col):
 			board.remove_pieces(selected_piece[0], row, col)
 			selected_piece[0].row = col
 			selected_piece[0].col = row
-			
-			# moveu e atualizou
-			
 		else:
 			return false
 		
+		audio_piece.play()
 		return true
 	
-	else:
+	else: # nao precisa do else mas deixa assim mesmo
 		if selected_piece and not (place_selected is Object) and [row, col] in valid_moves:
 			board.mover_pieces(selected_piece[0], row, col)
 			selected_piece[0].row = col
@@ -85,6 +84,7 @@ func _move(row, col):
 		else:
 			return false
 		
+		audio_piece.play()
 		return true
 
 
